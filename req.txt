@@ -1,0 +1,4 @@
+pdfrw
+reportlab
+supabase
+openai

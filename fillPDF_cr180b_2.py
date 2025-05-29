@@ -17,6 +17,7 @@ supabase: Client = create_client(url, key)
 # Initialize Azure OpenAI client
 openAIClient = AzureOpenAI(
     api_key= str(os.getenv("AZURE_OPENAI_API_KEY")),
+
     api_version="2025-01-01-preview",  # Use the latest API version
     azure_endpoint="https://mehuldemo.openai.azure.com/"  # Replace with your Azure endpoint
 )
