@@ -17,7 +17,6 @@ supabase: Client = create_client(url, key)
 # Initialize Azure OpenAI client
 openAIClient = AzureOpenAI(
     api_key= str(os.getenv("AZURE_OPENAI_API_KEY")),
-
     api_version="2025-01-01-preview",  # Use the latest API version
     azure_endpoint="https://mehuldemo.openai.azure.com/"  # Replace with your Azure endpoint
 )
@@ -216,6 +215,9 @@ def pullFromDB(tableName, reportID):
         return response.data
 
 
+                # If the key needs to be a boolean, then ensure you return a boolean value. 'True' or 'False'. Ensue the 'T' and 'F' are capitalized.
+                # If the key is a boolean then ensure the True or False is capitalized. The first letter should be capitalized.
+
 def mapValues(field_map, property_items, reports, crime_incidents, persons_involved, suspects, offenders, drug_items, vehicles_involved):
     Prompt = f"""
                 Your only goal is to map the values to the fields asked.
@@ -223,8 +225,7 @@ def mapValues(field_map, property_items, reports, crime_incidents, persons_invol
                 The template you need to fill out is a field_map which is a data dict.
                 Ensure you fill out the data_dict with the values from the tables.
                 You need to return the back a data_dict that contains the values for the fields in the field_map.
-                If the key needs to be a boolean, then ensure you return a boolean value. 'True' or 'False'. Ensue the 'T' and 'F' are capitalized.
-                If the key is a boolean then ensure the True or False is capitalized. The first letter should be capitalized.
+                If the key needs to be a boolean, return true or false (all lowercase, as in JSON).
                 If the key needs to be a string, then ensure you return a string value.
                 If the key needs to be a date, then ensure you return a date value in the format 'MM/DD/YYYY' as a string
                 If the key needs to be a phone number, then ensure you return a phone number value in the format 'XXX-XXX-XXXX' as a string.
@@ -233,7 +234,7 @@ def mapValues(field_map, property_items, reports, crime_incidents, persons_invol
                 You will only reply back in JSON.
                 Only reply in JSON with no other text or special characters.
                 DO not add ``` in your response. Simpily give the JSON.
-                Enssrue the first letter of the all boolean values are capitalized.
+                Enssrue the first letter of the all boolean values are lowercase.
     """
 
     content = f"""

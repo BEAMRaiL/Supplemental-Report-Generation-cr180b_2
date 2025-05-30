@@ -2,3 +2,4 @@ pdfrw
 reportlab
 supabase
 openai
+python-dotenv
